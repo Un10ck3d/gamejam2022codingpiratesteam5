@@ -17,6 +17,7 @@ public class ThudScript : MonoBehaviour
     private AudioClip[] clips;
 
     void Start() {
+        clips = new AudioClip[8];
         clips[0] = thud1;
         clips[1] = thud2;
         clips[2] = thud3;
