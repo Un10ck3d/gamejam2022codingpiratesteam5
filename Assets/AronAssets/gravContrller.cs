@@ -16,8 +16,6 @@ public class gravContrller : MonoBehaviour
     void Update()
     {
         rot = rotGet.rot < 0 ? rotGet.rot + 360 : rotGet.rot;
-        timer = timer + Time.deltaTime;
-        Debug.Log(rot);
         if(curRot != rot)
         {
             curRot = rot;
@@ -43,9 +41,7 @@ public class gravContrller : MonoBehaviour
         {
             gravShiftCalc = new Vector3(0,0,-9.81f);
         }
-        Debug.Log("hey");
         yield return new WaitForSeconds(0.34f);
-        Debug.Log("hejafter");
         Physics.gravity = gravShiftCalc;
 
     }
