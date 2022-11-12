@@ -16,7 +16,8 @@ public class gravContrller : MonoBehaviour
         //Physics.gravity.y
         if(Input.GetKey(KeyCode.W))
         {
-            Physics.gravity = new Vector3(0,9.81f,0);
+            Physics.gravity = new Vector3(0,transform.eulerAngles.z == 0 ? 9.81f : 0,0);
+            Physics.gravity = new Vector3(0,transform.eulerAngles.z == -180 ? -9.81f : 0,0);
         }
         if(Input.GetKey(KeyCode.S))
         {
