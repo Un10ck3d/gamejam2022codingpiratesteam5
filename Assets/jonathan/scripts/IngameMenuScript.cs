@@ -24,4 +24,8 @@ public class IngameMenuScript : MonoBehaviour
     public void ToggleMenu() {
         menuObject.SetActive(!menuObject.activeSelf);
     }
+
+    public void ExitGame() {
+        Application.Quit();
+    }
 }
