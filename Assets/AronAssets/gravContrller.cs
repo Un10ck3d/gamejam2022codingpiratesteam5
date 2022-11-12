@@ -9,6 +9,10 @@ public class gravContrller : MonoBehaviour
     private smmothCamRotAron rotGet;
     private float rot;
     private float curRot = 0;
+    void Awake()
+    {
+        Physics.gravity = new Vector3(0,-9.81f,0);
+    }
     void Update()
     {
         rot = rotGet.rot < 0 ? rotGet.rot + 360 : rotGet.rot;
