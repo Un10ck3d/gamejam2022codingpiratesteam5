@@ -11,17 +11,27 @@ public class MenuScript : MonoBehaviour
     public GameObject ExitButton;
     public GameObject MainMenu;
     public GameObject SettingsMenu;
+    public GameObject CreditsMenuObject;
     public TextMeshProUGUI DisplaySettingsText;
+
+    public AudioClip clickSound;
+    public AudioSource audioSource;
 
     void Start()
     {
         MainMenu.SetActive(true);
         SettingsMenu.SetActive(false);
+        CreditsMenuObject.SetActive(false);
         if (Screen.fullScreen == true) {
             DisplaySettingsText.text = "FullScreen: On";
         } else {
             DisplaySettingsText.text = "FullScreen: Off";
         }
+    }
+
+    public void click() {
+        audioSource.clip = clickSound;
+        audioSource.Play();
     }
 
     public void ExitGame() {
@@ -33,12 +43,14 @@ public class MenuScript : MonoBehaviour
         Debug.Log("Entering Settings");
         MainMenu.SetActive(false);
         SettingsMenu.SetActive(true);
+        CreditsMenuObject.SetActive(false);
     }
 
     public void BackMain() {
         Debug.Log("Going back to main menu");
         MainMenu.SetActive(true);
         SettingsMenu.SetActive(false);
+        CreditsMenuObject.SetActive(false);
     }
 
     public void PlayGame() {
@@ -57,5 +69,11 @@ public class MenuScript : MonoBehaviour
             Screen.fullScreen = true;
             DisplaySettingsText.text = "FullScreen: On";
         }
+    }
+
+    public void CreditsMenu() {
+        CreditsMenuObject.SetActive(true);
+        SettingsMenu.SetActive(false);
+        MainMenu.SetActive(false);
     }
 }

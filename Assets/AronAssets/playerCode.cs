@@ -10,6 +10,7 @@ public class playerCode : MonoBehaviour
     Material mymat;
 
     public Light l;
+    public ThudScript thudManager;
     void Start()
     {
         mymat = GetComponent<Renderer>().materials[3];
@@ -21,6 +22,7 @@ public class playerCode : MonoBehaviour
         StoredObjectAmount += 1;
         controller.IsHitingWall = true;
         yellow();
+        thudManager.thud();
         
     }
     void OnTriggerExit(Collider other)
