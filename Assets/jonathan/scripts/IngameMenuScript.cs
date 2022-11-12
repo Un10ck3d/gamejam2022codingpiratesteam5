@@ -6,9 +6,19 @@ using UnityEngine.SceneManagement;
 public class IngameMenuScript : MonoBehaviour
 {
     public GameObject menuObject;
+
+    public AudioClip clickSound;
+    public AudioSource audioSource;
+
     void Start()
     {
         menuObject.SetActive(false);
+        click();
+    }
+
+    public void click() {
+        audioSource.clip = clickSound;
+        audioSource.Play();
     }
 
     public void Restart() {
@@ -17,6 +27,7 @@ public class IngameMenuScript : MonoBehaviour
     }
 
     public void EnterMenu() {
+        click();
         Debug.Log("Entering Menu");
         SceneManager.LoadScene(0);
     }
