@@ -17,6 +17,11 @@ public class MenuScript : MonoBehaviour
     {
         MainMenu.SetActive(true);
         SettingsMenu.SetActive(false);
+        if (Screen.fullScreen == true) {
+            DisplaySettingsText.text = "FullScreen: On";
+        } else {
+            DisplaySettingsText.text = "FullScreen: Off";
+        }
     }
 
     public void ExitGame() {
@@ -38,7 +43,7 @@ public class MenuScript : MonoBehaviour
 
     public void PlayGame() {
         Debug.Log("Starting game");
-        SceneManager.LoadScene("test");
+        SceneManager.LoadScene(1);
     }
 
     public void DisplaySettings() {
