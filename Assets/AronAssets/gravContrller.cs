@@ -4,32 +4,45 @@ using UnityEngine;
 
 public class gravContrller : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private float timer;
+    [SerializeField]
+    private smmothCamRotAron rotGet;
+    private float rot;
+    private float curRot = 0;
+    void Update()
     {
-        
+        rot = rotGet.rot < 0 ? rotGet.rot + 360 : rotGet.rot;
+        timer = timer + Time.deltaTime;
+        Debug.Log(rot);
+        if(curRot != rot)
+        {
+            curRot = rot;
+            StartCoroutine(shiftGrav());
+        }
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    IEnumerator shiftGrav()
     {
-        //Physics.gravity.y
-        if(Input.GetKey(KeyCode.W))
+        Vector3 gravShiftCalc = new Vector3(0,0,0);
+        if(rot == 0)
         {
-            Physics.gravity = new Vector3(0,transform.eulerAngles.z == 0 ? 9.81f : 0,0);
-            Physics.gravity = new Vector3(0,transform.eulerAngles.z == -180 ? -9.81f : 0,0);
+            gravShiftCalc = new Vector3(0,-9.81f,0);
         }
-        if(Input.GetKey(KeyCode.S))
+        else if(rot == 90)
         {
-            Physics.gravity = new Vector3(0,-9.81f,0);
+            gravShiftCalc = new Vector3(0,0,9.81f);
         }
-        if(Input.GetKey(KeyCode.D))
+        else if(rot == 180)
         {
-            Physics.gravity = new Vector3(0,0,9.81f);
+            gravShiftCalc = new Vector3(0,9.81f,0);
         }
-        if(Input.GetKey(KeyCode.A))
+        else if(rot == 270)
         {
-            Physics.gravity = new Vector3(0,0,-9.81f);
+            gravShiftCalc = new Vector3(0,0,-9.81f);
         }
+        Debug.Log("hey");
+        yield return new WaitForSeconds(0.34f);
+        Debug.Log("hejafter");
+        Physics.gravity = gravShiftCalc;
+
     }
 }

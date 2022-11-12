@@ -8,25 +8,35 @@ public class smmothCamRotAron : MonoBehaviour
 
     public int rotOffset;
     public float time;
+
+    public float rot;
     void Start()
     {
-        
+        rot = transform.eulerAngles.z;
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.UpArrow)) {
-            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, -90, transform.rotation.z+rotOffset-90), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+            rot += 180;
+            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
         }
         if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, -90, transform.rotation.z+rotOffset+0), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+            rot -= 90;
+            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
         }
-        if(Input.GetKeyDown(KeyCode.DownArrow)) {
-            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, -90, transform.rotation.z+rotOffset+90), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
-        }
+        // if(Input.GetKeyDown(KeyCode.DownArrow)) {
+        //     iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, transform.eulerAngles.z+rotOffset+0), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+        // }
         if(Input.GetKeyDown(KeyCode.RightArrow)) {
-            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, -90, transform.rotation.z+rotOffset+180), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+            rot += 90;
+            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
         }
+        rot = rot % 360;
     }
+    // float rotateFloat(float rotateAmount)
+    // {
+    //     if(rot )
+    // }
 }
