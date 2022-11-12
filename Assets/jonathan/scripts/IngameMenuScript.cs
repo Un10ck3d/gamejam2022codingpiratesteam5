@@ -5,16 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class IngameMenuScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject menuObject;
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        menuObject.SetActive(false);
     }
 
     public void Restart() {
@@ -24,5 +18,10 @@ public class IngameMenuScript : MonoBehaviour
 
     public void EnterMenu() {
         Debug.Log("Entering Menu");
+        SceneManager.LoadScene(0);
+    }
+
+    public void ToggleMenu() {
+        menuObject.SetActive(!menuObject.activeSelf);
     }
 }
