@@ -9,20 +9,38 @@ public class playerCode : MonoBehaviour
     private int StoredObjectAmount;
     Material mymat;
 
+    public Rigidbody rb;
+
     public Light l;
     public ThudScript thudManager;
+
+    private float oldvelspeed = 0;
+
+    public float velToPlaySound;
+    
     void Start()
     {
         mymat = GetComponent<Renderer>().materials[3];
         mymat.EnableKeyword("_EMISSION");
         mymat.SetColor("_EmissionColor", Color.red);
     }
+
+   
+    void Update()
+    {
+        if(Vector3.Distance(rb.velocity, Vector3.zero) - oldvelspeed < velToPlaySound){
+            thudManager.thud();
+        }
+        oldvelspeed = Vector3.Distance(rb.velocity, Vector3.zero);
+
+
+    }
     void OnTriggerEnter(Collider other)
     {
         StoredObjectAmount += 1;
         controller.IsHitingWall = true;
         yellow();
-        thudManager.thud();
+        // thudManager.thud();
         
     }
     void OnTriggerExit(Collider other)
