@@ -54,7 +54,7 @@ public class playerCode : MonoBehaviour
     }
 
     void red(){
-        mymat.SetColor("_EmissionColor", new Color(0, 1000, 0));
+        mymat.SetColor("_EmissionColor", new Color(1000, 0, 0));
         l.color = Color.red;
 
     }
