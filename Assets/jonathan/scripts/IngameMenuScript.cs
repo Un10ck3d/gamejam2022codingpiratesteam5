@@ -10,10 +10,26 @@ public class IngameMenuScript : MonoBehaviour
     public AudioClip clickSound;
     public AudioSource audioSource;
 
+    public AudioSource audioSourceMusic;
+
+    public AudioClip theme;
+    public AudioClip theme_loopable;
+
     void Start()
     {
+        audioSourceMusic.clip = theme;
+        audioSourceMusic.loop = false;
+        audioSourceMusic.Play();
         menuObject.SetActive(false);
         click();
+    }
+
+    void Update() {
+        if (!audioSourceMusic.isPlaying) {
+            audioSourceMusic.clip = theme_loopable;
+            audioSourceMusic.loop = true;
+            audioSourceMusic.Play();
+        }
     }
 
     public void click() {

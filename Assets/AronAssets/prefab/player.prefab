@@ -241,8 +241,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  rb: {fileID: 2013880626017211665}
   l: {fileID: 2013880625573428591}
   thudManager: {fileID: 431487670807633619}
+  velToPlaySound: -1
 --- !u!1001 &939958912
 PrefabInstance:
   m_ObjectHideFlags: 0
