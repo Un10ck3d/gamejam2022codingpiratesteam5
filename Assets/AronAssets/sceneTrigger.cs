@@ -25,7 +25,6 @@ public class sceneTrigger : MonoBehaviour
             {
                 if(other.gameObject.name == "player")
                 {
-                    Debug.Log("next scene at "+gameObject.name);
                     mainController.nextCameraPos(1);
                     used = true;
                 }
@@ -44,14 +43,12 @@ public class sceneTrigger : MonoBehaviour
     }
 
     public void OnTriggerExit(Collider other) {
-        Debug.Log("Player exit");
         playerExit = true;
     }
 
     void Update() {
         Debug.Log(used + " " + playerExit);
         if (used && playerExit) {
-            Debug.Log("ddddddddddd");
             Bcollider.isTrigger = false;
         }
     }
