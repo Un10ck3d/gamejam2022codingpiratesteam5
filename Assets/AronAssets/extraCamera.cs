@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sceneTrigger : MonoBehaviour
+public class extraCamera : MonoBehaviour
 {
     [SerializeField]
     private mainController mainController;
@@ -15,8 +15,8 @@ public class sceneTrigger : MonoBehaviour
             {
                 if(other.gameObject.name == "player")
                 {
-                    Debug.Log("next scene at "+gameObject.name);
-                    mainController.nextCameraPos(1);
+                    used = true;
+                    mainController.extraCameraPos(true);
                 }
             }
         }
@@ -26,7 +26,8 @@ public class sceneTrigger : MonoBehaviour
             {
                 if(other.gameObject.name == "player")
                 {
-                    mainController.nextCameraPos(-1);
+                    used = false;
+                    mainController.extraCameraPos(false);
                 }
             }
         }

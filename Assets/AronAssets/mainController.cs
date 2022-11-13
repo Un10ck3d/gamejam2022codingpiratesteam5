@@ -8,6 +8,10 @@ public class mainController : MonoBehaviour
     [SerializeField]
     private Transform[] cameraPositions;
     [SerializeField]
+    private Transform[] extraCameraPositions;
+    [SerializeField]
+    private GameObject[] levels_forDisabling;
+    [SerializeField]
     private int rotOffset;
     [SerializeField]
     private float time;
@@ -16,7 +20,7 @@ public class mainController : MonoBehaviour
     public bool IsHitingWall;
     private float rotNew;
     private float curRot = 0;
-    private int curCameraPosition = 1;
+    private int curCameraPosition = 0;
     private int lastCameraPosition = 3;
     private Vector3 lastPosition;
 
@@ -34,11 +38,23 @@ public class mainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(curCameraPosition);
+        for(int i = 0;i<=levels_forDisabling.Length-1;i++)
+        {
+            if(i!=curCameraPosition)
+            {
+                levels_forDisabling[i].SetActive(false);
+            }
+            else
+            {
+                levels_forDisabling[i].SetActive(true);
+            }
+        }
         if(cameraPositions.Length != 0)
         {            
             if(lastCameraPosition != curCameraPosition)
             {
-                transform.position = cameraPositions[curCameraPosition-1].position;
+                transform.position = cameraPositions[curCameraPosition].position;
                 lastCameraPosition = curCameraPosition;
             }
         }
@@ -70,16 +86,6 @@ public class mainController : MonoBehaviour
         }
     }
 
-        // void FixedUpdate()
-        // {
-        //     RaycastHit hit;
-        //     if(Physics.Linecast(transform.position,lastPosition,out hit))
-        //     {
-        //         Debug.Log("hit");
-        //         transform.position = hit.transform.position + new Vector3(0,1,0);
-        //     }
-        //     lastPosition = transform.position;
-        // }
     IEnumerator shiftGrav()
     {
         Vector3 gravShiftCalc = new Vector3(0,0,0);
@@ -106,5 +112,16 @@ public class mainController : MonoBehaviour
     public void nextCameraPos(int amount)
     {
         curCameraPosition += amount;
+    }
+    public void extraCameraPos(bool on)
+    {
+        if(on)
+        {
+            transform.position = extraCameraPositions[curCameraPosition].position;
+        }
+        else
+        {
+            transform.position = cameraPositions[curCameraPosition].position;
+        }
     }
 }
