@@ -7,10 +7,6 @@ public class sceneTrigger : MonoBehaviour
     [SerializeField]
     private mainController mainController;
     private bool used = false;
-    void Update()
-    {
-        
-    }
     void OnTriggerEnter(Collider other)
     {
         if(used == false)
