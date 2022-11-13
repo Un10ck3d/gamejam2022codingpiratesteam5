@@ -8,6 +8,8 @@ public class mainController : MonoBehaviour
     [SerializeField]
     private Transform[] cameraPositions;
     [SerializeField]
+    private GameObject[] levels_forDisabling;
+    [SerializeField]
     private int rotOffset;
     [SerializeField]
     private float time;
@@ -16,7 +18,7 @@ public class mainController : MonoBehaviour
     public bool IsHitingWall;
     private float rotNew;
     private float curRot = 0;
-    private int curCameraPosition = 1;
+    private int curCameraPosition = 0;
     private int lastCameraPosition = 3;
     private Vector3 lastPosition;
 
@@ -34,9 +36,23 @@ public class mainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for(int i = 0;i<=levels_forDisabling.Length-1;i++)
+            {
+                Debug.Log(i);
+                if(i!=curCameraPosition)
+                {
+                    Debug.Log(levels_forDisabling[i].name + "is disabled");
+                    levels_forDisabling[i].SetActive(false);
+                }
+                else
+                {
+                    Debug.Log(levels_forDisabling[i].name + "is activated");
+                    levels_forDisabling[i].SetActive(true);
+                }
+            }
         if(lastCameraPosition != curCameraPosition)
         {
-            transform.position = cameraPositions[curCameraPosition-1].position;
+            transform.position = cameraPositions[curCameraPosition].position;
             lastCameraPosition = curCameraPosition;
         }
         if(IsHitingWall)
