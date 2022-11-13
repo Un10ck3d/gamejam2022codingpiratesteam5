@@ -40,7 +40,7 @@ public class mainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(curCameraPosition);
+        //Debug.Log(curCameraPosition);
         for(int i = 0;i<=levels_forDisabling.Length-1;i++)
         {
             if(i!=curCameraPosition)
