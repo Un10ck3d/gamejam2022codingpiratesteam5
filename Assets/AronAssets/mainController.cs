@@ -6,6 +6,8 @@ public class mainController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
+    private Vector3[] cameraPositions;
+    [SerializeField]
     private int rotOffset;
     [SerializeField]
     private float time;
@@ -14,6 +16,7 @@ public class mainController : MonoBehaviour
     public bool IsHitingWall;
     private float rotNew;
     private float curRot = 0;
+    private int curCameraPosition = 0;
 
     void Awake()
     {
@@ -75,5 +78,9 @@ public class mainController : MonoBehaviour
         yield return new WaitForSeconds(0.34f);
         Physics.gravity = gravShiftCalc;
 
+    }
+    public void nextCameraPos()
+    {
+        curCameraPosition += 1;
     }
 }
