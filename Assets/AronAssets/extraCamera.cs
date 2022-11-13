@@ -15,21 +15,21 @@ public class extraCamera : MonoBehaviour
             {
                 if(other.gameObject.name == "player")
                 {
-                    used = true;
+                    //used = true;
                     mainController.extraCameraPos(true);
                 }
             }
         }
-        else
-        {
-            if(!other.isTrigger)
-            {
-                if(other.gameObject.name == "player")
-                {
-                    used = false;
-                    mainController.extraCameraPos(false);
-                }
-            }
-        }
+        //else
+        //{
+        //    if(!other.isTrigger)
+        //    {
+        //        if(other.gameObject.name == "player")
+        //        {
+        //            used = false;
+        //            mainController.extraCameraPos(false);
+        //        }
+        //    }
+        //}
     }
 }
