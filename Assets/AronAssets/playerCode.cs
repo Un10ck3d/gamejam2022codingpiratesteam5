@@ -40,7 +40,7 @@ public class playerCode : MonoBehaviour
     {   
         if(!other.isTrigger)
         {
-            StoredObjectAmount += 1;
+            StoredObjectAmount = Mathf.Max(StoredObjectAmount + 1, 1);
             Debug.Log("hit");
             controller.IsHitingWall = true;
             yellow();
