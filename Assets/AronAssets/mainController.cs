@@ -15,6 +15,8 @@ public class mainController : MonoBehaviour
     private float rotNew;
     private float curRot = 0;
 
+    public ThudScript thudScipt;
+
     void Awake()
     {
         Physics.gravity = new Vector3(0,-9.81f,0);
@@ -49,6 +51,7 @@ public class mainController : MonoBehaviour
             if(curRot != rotNew)
             {
                 curRot = rotNew;
+                thudScipt.rotate();
                 StartCoroutine(shiftGrav());
             }
         }

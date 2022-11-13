@@ -16,6 +16,7 @@ public class ThudScript : MonoBehaviour
 
     private AudioClip[] clips;
 
+    public AudioClip rotateSound;
     void Start() {
         clips = new AudioClip[8];
         clips[0] = thud1;
@@ -31,6 +32,11 @@ public class ThudScript : MonoBehaviour
     public void thud() {
         int thudNumber = Random.Range(0, 7);
         audioSource.clip = clips[thudNumber];
+        audioSource.Play();
+    }
+
+    public void rotate() {
+        audioSource.clip = rotateSound;
         audioSource.Play();
     }
 }

@@ -54,6 +54,7 @@ MonoBehaviour:
   thud6: {fileID: 8300000, guid: 2fb51a9caf3e7ff719741f4bc12e44d3, type: 3}
   thud7: {fileID: 8300000, guid: d8059fefb9491de3f9192200507cc6a1, type: 3}
   thud8: {fileID: 8300000, guid: df1852e2eedb2ec948d6c5885e7c474f, type: 3}
+  rotateSound: {fileID: 8300000, guid: d668593c1a5ab775788d2f9447407810, type: 3}
 --- !u!82 &431487670942022738
 AudioSource:
   m_ObjectHideFlags: 0
