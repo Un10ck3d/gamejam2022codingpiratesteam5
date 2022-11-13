@@ -70,16 +70,16 @@ public class mainController : MonoBehaviour
         }
     }
 
-    // void FixedUpdate()
-    // {
-    //     RaycastHit hit;
-    //     if(Physics.Linecast(transform.position,lastPosition,out hit))
-    //     {
-    //         Debug.Log("hit");
-    //         transform.position = hit.transform.position + new Vector3(0,1,0);
-    //     }
-    //     lastPosition = transform.position;
-    // }
+        // void FixedUpdate()
+        // {
+        //     RaycastHit hit;
+        //     if(Physics.Linecast(transform.position,lastPosition,out hit))
+        //     {
+        //         Debug.Log("hit");
+        //         transform.position = hit.transform.position + new Vector3(0,1,0);
+        //     }
+        //     lastPosition = transform.position;
+        // }
     IEnumerator shiftGrav()
     {
         Vector3 gravShiftCalc = new Vector3(0,0,0);
