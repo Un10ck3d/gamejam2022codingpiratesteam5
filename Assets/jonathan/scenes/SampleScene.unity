@@ -226,6 +226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainController: {fileID: 963194229}
+  used: 0
+  Bcollider: {fileID: 0}
+  playerExit: 0
 --- !u!65 &70099573
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -296,7 +299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198274659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 31, z: -9}
+  m_LocalPosition: {x: 0, y: 31.08, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,7 +317,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2099404, y: 1.5501766, z: 0.52314377}
+  m_Size: {x: 2.2099404, y: 1.83, z: 0.52314377}
   m_Center: {x: 0.24874043, y: 0.34820652, z: 0}
 --- !u!114 &198274662
 MonoBehaviour:
@@ -329,6 +332,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainController: {fileID: 963194229}
+  used: 0
+  Bcollider: {fileID: 0}
+  playerExit: 0
 --- !u!1 &246552610
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +502,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainController: {fileID: 963194229}
+  used: 0
+  Bcollider: {fileID: 0}
+  playerExit: 0
 --- !u!65 &303962391
 BoxCollider:
   m_ObjectHideFlags: 0

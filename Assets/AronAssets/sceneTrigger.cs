@@ -6,8 +6,18 @@ public class sceneTrigger : MonoBehaviour
 {
     [SerializeField]
     private mainController mainController;
-    private bool used = false;
-    void OnTriggerEnter(Collider other)
+    public bool used;
+
+    public BoxCollider Bcollider;
+    public bool playerExit;
+
+    void Start() {
+        Bcollider = GetComponent<BoxCollider>();
+        used = false;
+        playerExit = false;
+    }
+
+    public void OnTriggerEnter(Collider other)
     {
         if(used == false)
         {
@@ -17,18 +27,33 @@ public class sceneTrigger : MonoBehaviour
                 {
                     Debug.Log("next scene at "+gameObject.name);
                     mainController.nextCameraPos(1);
+                    used = true;
                 }
             }
         }
-        else
-        {
-            if(!other.isTrigger)
-            {
-                if(other.gameObject.name == "player")
-                {
-                    mainController.nextCameraPos(-1);
-                }
-            }
+        //else
+        //{
+        //    if(!other.isTrigger)
+        //    {
+        //        if(other.gameObject.name == "player")
+        //        {
+        //            mainController.nextCameraPos(-1);
+        //        }
+        //    }
+        //}
+    }
+
+    public void OnTriggerExit(Collider other) {
+        Debug.Log("Player exit");
+        playerExit = true;
+    }
+
+    void Update() {
+        Debug.Log(used + " " + playerExit);
+        if (used && playerExit) {
+            Debug.Log("ddddddddddd");
+            Bcollider.isTrigger = false;
         }
     }
+
 }
