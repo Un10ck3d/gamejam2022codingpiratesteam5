@@ -6,7 +6,8 @@ public class playerCode : MonoBehaviour
 {
     [SerializeField]
     private mainController controller;
-    private int StoredObjectAmount;
+    //[HideInInspector]
+    public int StoredObjectAmount;
     Material mymat;
 
     public Rigidbody rb;
@@ -36,20 +37,27 @@ public class playerCode : MonoBehaviour
 
     }
     void OnTriggerEnter(Collider other)
-    {
-        StoredObjectAmount += 1;
-        controller.IsHitingWall = true;
-        yellow();
-        // thudManager.thud();
+    {   
+        if(!other.isTrigger)
+        {
+            StoredObjectAmount += 1;
+            Debug.Log("hit");
+            controller.IsHitingWall = true;
+            yellow();
+        }
         
     }
     void OnTriggerExit(Collider other)
     {
-        StoredObjectAmount -= 1;
-        if(StoredObjectAmount <= 0)
+        if(!other.isTrigger)
         {
-            controller.IsHitingWall = false;
-            red();
+            Debug.Log("unhit");
+            StoredObjectAmount -= 1;
+            if(StoredObjectAmount <= 0)
+            {
+                controller.IsHitingWall = false;
+                red();
+            }
         }
     }
 

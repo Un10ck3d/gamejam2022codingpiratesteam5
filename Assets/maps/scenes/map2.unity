@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &48084143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6903662733614414442, guid: b0de47a442fead366882db47d52bbe2e, type: 3}
+  m_PrefabInstance: {fileID: 61111143}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109972e5e6aa2445a96954d5210ef420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &61111143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +141,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1367022517185600644, guid: b0de47a442fead366882db47d52bbe2e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -9
+      objectReference: {fileID: 0}
     - target: {fileID: 6903662732857734778, guid: b0de47a442fead366882db47d52bbe2e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -522,7 +537,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 41ec0aa462f8f314898afceb414f8d07, type: 3}
+  - {fileID: 2100000, guid: daa06c1d9959a114c8c100ed9f9b1394, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -992,12 +1007,24 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
+      propertyPath: menuScript
+      value: 
+      objectReference: {fileID: 48084143}
+    - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
       propertyPath: cameraPositions.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
       propertyPath: cameraPositions.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
+      propertyPath: levels_forDisabling.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
+      propertyPath: extraCameraPositions.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4953041255798420573, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
       propertyPath: m_Name
@@ -1211,7 +1238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 41ec0aa462f8f314898afceb414f8d07, type: 3}
+  - {fileID: 2100000, guid: daa06c1d9959a114c8c100ed9f9b1394, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
