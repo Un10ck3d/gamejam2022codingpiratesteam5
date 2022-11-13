@@ -46,8 +46,8 @@ public class sceneTrigger : MonoBehaviour
         playerExit = true;
     }
 
-    void Update() {
-        Debug.Log(used + " " + playerExit);
+    void Update()
+    {
         if (used && playerExit) {
             Bcollider.isTrigger = false;
         }
