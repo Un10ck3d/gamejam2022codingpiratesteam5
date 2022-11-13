@@ -16,6 +16,8 @@ public class IngameMenuScript : MonoBehaviour
     public AudioClip theme_loopable;
 
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI timerText;
+
     void Start()
     {
         audioSourceMusic.clip = theme;
@@ -32,6 +34,7 @@ public class IngameMenuScript : MonoBehaviour
             audioSourceMusic.loop = true;
             audioSourceMusic.Play();
         }
+        timerText.text = "Time: " + Mathf.FloorToInt(Time.timeSinceLevelLoad).ToString();
     }
 
     public void click() {
