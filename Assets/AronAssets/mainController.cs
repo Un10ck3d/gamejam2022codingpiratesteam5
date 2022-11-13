@@ -26,6 +26,8 @@ public class mainController : MonoBehaviour
 
     public ThudScript thudScipt;
 
+    public IngameMenuScript menuScript;
+
     void Awake()
     {
         Physics.gravity = new Vector3(0,-9.81f,0);
@@ -48,6 +50,7 @@ public class mainController : MonoBehaviour
             else
             {
                 levels_forDisabling[i].SetActive(true);
+                menuScript.level(i+1);
             }
         }
         if(cameraPositions.Length != 0)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class IngameMenuScript : MonoBehaviour
 {
     public GameObject menuObject;
@@ -15,6 +15,7 @@ public class IngameMenuScript : MonoBehaviour
     public AudioClip theme;
     public AudioClip theme_loopable;
 
+    public TextMeshProUGUI levelText;
     void Start()
     {
         audioSourceMusic.clip = theme;
@@ -22,6 +23,7 @@ public class IngameMenuScript : MonoBehaviour
         audioSourceMusic.Play();
         menuObject.SetActive(false);
         click();
+        levelText.text = "Level: 0";
     }
 
     void Update() {
@@ -54,5 +56,9 @@ public class IngameMenuScript : MonoBehaviour
 
     public void ExitGame() {
         Application.Quit();
+    }
+
+    public void level(int level) {
+        levelText.text = "Level: " + level.ToString();
     }
 }

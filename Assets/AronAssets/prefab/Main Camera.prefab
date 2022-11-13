@@ -98,11 +98,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350987ec97e7e994c8417c6397d93e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  extraCameraPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  levels_forDisabling:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   rotOffset: -90
   time: 0.5
   rot: 0
   IsHitingWall: 0
   thudScipt: {fileID: 4701844905796443693}
+  menuScript: {fileID: 0}
 --- !u!1001 &4953041256869503614
 PrefabInstance:
   m_ObjectHideFlags: 0
