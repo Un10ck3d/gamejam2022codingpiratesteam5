@@ -6,7 +6,7 @@ public class mainController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private Vector3[] cameraPositions;
+    private Transform[] cameraPositions;
     [SerializeField]
     private int rotOffset;
     [SerializeField]
@@ -16,7 +16,9 @@ public class mainController : MonoBehaviour
     public bool IsHitingWall;
     private float rotNew;
     private float curRot = 0;
-    private int curCameraPosition = 0;
+    private int curCameraPosition = 1;
+    private int lastCameraPosition = 3;
+    private Vector3 lastPosition;
 
     public ThudScript thudScipt;
 
@@ -32,6 +34,11 @@ public class mainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(lastCameraPosition != curCameraPosition)
+        {
+            transform.position = cameraPositions[curCameraPosition-1].position;
+            lastCameraPosition = curCameraPosition;
+        }
         if(IsHitingWall)
         {
             if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
@@ -59,6 +66,17 @@ public class mainController : MonoBehaviour
             }
         }
     }
+
+    void FixedUpdate()
+    {
+        RaycastHit hit;
+        if(Physics.Linecast(transform.position,lastPosition,out hit))
+        {
+            Debug.Log("hit");
+            transform.position = hit.transform.position + new Vector3(0,1,0);
+        }
+        lastPosition = transform.position;
+    }
     IEnumerator shiftGrav()
     {
         Vector3 gravShiftCalc = new Vector3(0,0,0);
@@ -82,8 +100,8 @@ public class mainController : MonoBehaviour
         Physics.gravity = gravShiftCalc;
 
     }
-    public void nextCameraPos()
+    public void nextCameraPos(int amount)
     {
-        curCameraPosition += 1;
+        curCameraPosition += amount;
     }
 }
