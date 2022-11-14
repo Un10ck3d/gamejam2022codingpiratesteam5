@@ -137,7 +137,7 @@ public class mainController : MonoBehaviour
     }
 
     bool shouldMobileRot(int degree){
-        
+        if(SAngle == 0) return false;
         return Mathf.Min(Mathf.Abs(degree - SAngle),  Mathf.Abs(degree - (SAngle - 360))) < 50;
     }
 
