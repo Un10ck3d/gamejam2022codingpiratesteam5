@@ -1,1 +1,3 @@
-# gamejam2022codingpiratesteam5
+# Gravity lab
+
+Play here: https://un1x.itch.io/gravlab
