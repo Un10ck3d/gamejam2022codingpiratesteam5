@@ -33,7 +33,20 @@ public class mainController : MonoBehaviour
 
     private float SAngle;
 
-    private bool isMobile;
+    bool isMobile;
+
+    Vector2 pM;
+    Vector2 M;
+
+    Vector2 startpM;
+
+    public bool mobileRotateEnabled = false;
+
+    float oldrottomouse;
+    float RM;
+
+
+
 
     void Awake()
     {
@@ -54,17 +67,46 @@ public class mainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isMobile = AttitudeSensor.current.attitude.ReadValue().eulerAngles.z != 0;
         if(AttitudeSensor.current != null){
+            isMobile = AttitudeSensor.current.attitude.ReadValue().eulerAngles.z != 0;
 
-            Debug.Log(AttitudeSensor.current.attitude.ReadValue().eulerAngles);
-            menuScript.level((int) AttitudeSensor.current.attitude.ReadValue().eulerAngles.z);
+            
             SAngle = AttitudeSensor.current.attitude.ReadValue().eulerAngles.z;
         }
         else{
-            Debug.Log("no censor");
-            menuScript.level(-10);
+            // Debug.Log("no censor");
+            // menuScript.level(-10);
         }
+
+        pM = new Vector2(Input.mousePosition.x / Screen.width * 100, Input.mousePosition.y / Screen.height * 100);
+        RM = Quaternion.LookRotation(Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0)).eulerAngles.x;
+        if(Input.GetMouseButtonDown(0)){
+
+            startpM = pM;
+            oldrottomouse = RM;
+            Debug.Log(Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        }
+
+        if(Input.GetMouseButton(0)){
+            transform.Rotate(0, 0, RM - oldrottomouse);
+            oldrottomouse = Quaternion.LookRotation(Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0)).eulerAngles.x;
+        }
+        
+        if(Input.GetMouseButtonUp(0)){
+
+            float xdiff = pM.y - startpM.y;
+            if(IsHitingWall){
+                if(xdiff > 20){
+                    rot -= 90;
+                }
+                if(xdiff < -20){
+                    rot += 90;
+                }
+            }
+            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeOutCubic));
+        }
+
+        menuScript.level((int) (Input.mousePosition.x / Screen.width * 100));
         //Debug.Log(curCameraPosition);
         for(int i = 0;i<=levels_forDisabling.Length-1;i++)
         {
@@ -105,7 +147,7 @@ public class mainController : MonoBehaviour
                     rot += 90;
                     iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
             }
-            else {
+            else if(mobileRotateEnabled){
 
                 if(shouldMobileRot(90)){
                     rot = 180;
