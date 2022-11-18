@@ -40,10 +40,24 @@ public class mainController : MonoBehaviour
 
     Vector2 startpM;
 
+
+
     public bool mobileRotateEnabled = false;
 
     float oldrottomouse;
+    float startrotmouse;
     float RM;
+    public enum rotModes
+    {
+        MouseYPos,
+        rotationOfLevel
+    }
+
+    [SerializeField]
+    public rotModes rotationMode;
+
+    [SerializeField]
+    public float rotDisToRotate;
 
 
 
@@ -83,6 +97,7 @@ public class mainController : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
 
             startpM = pM;
+            startrotmouse = RM;
             oldrottomouse = RM;
             Debug.Log(Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0));
         }
@@ -93,14 +108,32 @@ public class mainController : MonoBehaviour
         }
         
         if(Input.GetMouseButtonUp(0)){
-
-            float xdiff = pM.y - startpM.y;
             if(IsHitingWall){
-                if(xdiff > 20){
-                    rot -= 90;
+
+                if(rotationMode == rotModes.rotationOfLevel){
+
+                    float rotdiff = startrotmouse - RM ;
+                    if(rotdiff < -180) rotdiff += 360;
+                    if(rotdiff > 180) rotdiff -= 360;
+                    Debug.Log(rotdiff);
+                    
+                    if(rotdiff > rotDisToRotate){
+                        rot -= 90;
+                    }
+                    if(rotdiff < -rotDisToRotate){
+                        rot += 90;
+                    
+                    }
                 }
-                if(xdiff < -20){
-                    rot += 90;
+                else{
+                    float xdiff = pM.y - startpM.y;
+                    
+                    if(xdiff > rotDisToRotate){
+                        rot -= 90;
+                    }
+                    if(xdiff < -rotDisToRotate){
+                        rot += 90;
+                    }
                 }
             }
             iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeOutCubic));
