@@ -3701,6 +3701,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2104599199}
     - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
+      propertyPath: useMenu
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
+      propertyPath: preRot.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
       propertyPath: menuScript
       value: 
       objectReference: {fileID: 412720767}
@@ -3711,6 +3719,10 @@ PrefabInstance:
     - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
       propertyPath: rotDisToRotate
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
+      propertyPath: mobileRotateEnabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4953041255798420569, guid: a5a422d00c53c164c96902b158fa40bf, type: 3}
       propertyPath: cameraPositions.Array.size

@@ -44,6 +44,19 @@ public class mainController : MonoBehaviour
 
     public bool mobileRotateEnabled = false;
 
+    [SerializeField]
+    private bool useMenu;
+    [SerializeField]
+    private bool airRot;
+    [SerializeField]
+    private Vector3 preRot;
+
+    // Declare a serialized field for the dropdown box
+    [SerializeField]
+    // Declare a non-serialized field to store the selected option
+    private bool Dimension3D = true;
+
+
     float oldrottomouse;
     float startrotmouse;
     float RM;
@@ -136,10 +149,11 @@ public class mainController : MonoBehaviour
                     }
                 }
             }
-            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeOutCubic));
+            iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(preRot.x, preRot.y, rot), "time", time, "easetype", iTween.EaseType.easeOutCubic));
         }
-
-        menuScript.level((int) (Input.mousePosition.x / Screen.width * 100));
+        if(useMenu){
+            menuScript.level((int) (Input.mousePosition.x / Screen.width * 100));
+        }
         //Debug.Log(curCameraPosition);
         for(int i = 0;i<=levels_forDisabling.Length-1;i++)
         {
@@ -161,42 +175,42 @@ public class mainController : MonoBehaviour
                 lastCameraPosition = curCameraPosition;
             }
         }
-        if(IsHitingWall)
+        if(IsHitingWall || airRot)
         {
-            if(!isMobile){
+            
+            if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
+                rot += 180;
+                iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(preRot.x, preRot.y, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
             }
-                if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
-                    rot += 180;
-                    iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
-                }
-                if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
-                    rot -= 90;
-                    iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
-                }
-                // if(Input.GetKeyDown(KeyCode.DownArrow)) {
-                //     iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, transform.eulerAngles.z+rotOffset+0), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
-                // }
-                if(Input.GetKeyDown(KeyCode.RightArrow)  || Input.GetKeyDown(KeyCode.D)) {
-                    rot += 90;
-                    iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+            if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
+                rot -= 90;
+                iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(preRot.x, preRot.y, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
             }
-            else if(mobileRotateEnabled){
+            // if(Input.GetKeyDown(KeyCode.DownArrow)) {
+            //     iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, transform.eulerAngles.z+rotOffset+0), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+            // }
+            if(Input.GetKeyDown(KeyCode.RightArrow)  || Input.GetKeyDown(KeyCode.D)) {
+                rot += 90;
+                iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(preRot.x, preRot.y, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+            }
+
+            if(mobileRotateEnabled){
 
                 if(shouldMobileRot(90)){
                     rot = 180;
-                    // iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+                   
                 }
                 if(shouldMobileRot(180)){
                     rot = 90;
-                    // iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+                    
                 }
                 if(shouldMobileRot(-90)){
                     rot = 0;
-                    // iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+                    
                 }
                 if(shouldMobileRot(0)){
                     rot = -90;
-                    // iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeInOutCubic));
+                   
                 }
             }
             rot = rot % 360;
@@ -218,25 +232,38 @@ public class mainController : MonoBehaviour
 
     IEnumerator shiftGrav()
     {
-        Vector3 gravShiftCalc = new Vector3(0,0,0);
+        Vector3 gravShiftCalc = new Vector3(0,-9.81f,0);
+        if(Dimension3D){
+
+            if(rotNew == 90) gravShiftCalc = new Vector3(0,0,9.81f);
+
+            else if(rotNew == 270) gravShiftCalc = new Vector3(0,0,-9.81f);
+
+        }
+        else{
+
+            if(rotNew == 90) gravShiftCalc = new Vector3(9.81f,0,0);
+            
+            else if(rotNew == 270) gravShiftCalc = new Vector3(-9.81f,0,0);
+            
+        }
         if(rotNew == 0)
         {
             gravShiftCalc = new Vector3(0,-9.81f,0);
-        }
-        else if(rotNew == 90)
-        {
-            gravShiftCalc = new Vector3(0,0,9.81f);
         }
         else if(rotNew == 180)
         {
             gravShiftCalc = new Vector3(0,9.81f,0);
         }
-        else if(rotNew == 270)
-        {
-            gravShiftCalc = new Vector3(0,0,-9.81f);
-        }
         yield return new WaitForSeconds(0.34f);
-        Physics.gravity = gravShiftCalc;
+        if(Dimension3D){
+            Physics.gravity = gravShiftCalc;
+        }
+        else{
+            // so its 2d
+            Physics2D.gravity = gravShiftCalc;
+        }
+            
 
     }
     public void nextCameraPos(int amount)
