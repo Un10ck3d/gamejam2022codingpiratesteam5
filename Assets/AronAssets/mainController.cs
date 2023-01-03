@@ -49,6 +49,8 @@ public class mainController : MonoBehaviour
     [SerializeField]
     private bool airRot;
     [SerializeField]
+    private float waitBeforeGravChange = 0.34f;
+    [SerializeField]
     private Vector3 preRot;
 
     // Declare a serialized field for the dropdown box
@@ -90,7 +92,7 @@ public class mainController : MonoBehaviour
 
         isMobile = false;
 
-        
+
         Vector3 gravShiftCalc = new Vector3(0,-9.81f,0);
         if(Dimension3D){
             Physics.gravity = gravShiftCalc;
@@ -265,7 +267,7 @@ public class mainController : MonoBehaviour
         {
             gravShiftCalc = new Vector3(0,9.81f,0);
         }
-        yield return new WaitForSeconds(0.34f);
+        yield return new WaitForSeconds(waitBeforeGravChange);
         if(Dimension3D){
             Physics.gravity = gravShiftCalc;
         }
