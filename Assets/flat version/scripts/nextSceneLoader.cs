@@ -23,6 +23,7 @@ public class nextSceneLoader : MonoBehaviour
         if(!IsObjectInView(obj)){
             if(IsInside(obj, gameObject)){
                 Debug.Log("Next scene please");
+                LoadNextScene();
             }
         }
     }

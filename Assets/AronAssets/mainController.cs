@@ -89,6 +89,16 @@ public class mainController : MonoBehaviour
         }
 
         isMobile = false;
+
+        
+        Vector3 gravShiftCalc = new Vector3(0,-9.81f,0);
+        if(Dimension3D){
+            Physics.gravity = gravShiftCalc;
+        }
+        else{
+            // so its 2d
+            Physics2D.gravity = gravShiftCalc;
+        }
     }
 
     // Update is called once per frame
