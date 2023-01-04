@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class mainController : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
     private Transform[] cameraPositions;
     [SerializeField]
@@ -82,7 +81,7 @@ public class mainController : MonoBehaviour
     void Update()
     {
         if(AttitudeSensor.current != null){
-            isMobile = AttitudeSensor.current.attitude.ReadValue().eulerAngles.z != 0;
+            //isMobile = AttitudeSensor.current.attitude.ReadValue().eulerAngles.z != 0;
 
             
             SAngle = AttitudeSensor.current.attitude.ReadValue().eulerAngles.z;
@@ -139,7 +138,7 @@ public class mainController : MonoBehaviour
             iTween.RotateTo(gameObject, iTween.Hash("rotation", new Vector3(0, 270, rot), "time", time, "easetype", iTween.EaseType.easeOutCubic));
         }
 
-        menuScript.level((int) (Input.mousePosition.x / Screen.width * 100));
+        //menuScript.level((int) (Input.mousePosition.x / Screen.width * 100));
         //Debug.Log(curCameraPosition);
         for(int i = 0;i<=levels_forDisabling.Length-1;i++)
         {
@@ -150,7 +149,7 @@ public class mainController : MonoBehaviour
             else
             {
                 levels_forDisabling[i].SetActive(true);
-                // menuScript.level(i+1);
+                menuScript.level(i+1);
             }
         }
         if(cameraPositions.Length != 0)
